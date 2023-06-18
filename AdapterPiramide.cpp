@@ -50,6 +50,23 @@ class PyramidPegAdapter :public RoundPeg{
     public:
         PyramidPegAdapter(PyramidPeg* peg) : RoundPeg(peg->getLados()/ (4 *peg->getArea())){}
 };
+class SquarePeg {
+    public:
+    double width;
+    SquarePeg();
+    SquarePeg(double width){
+        this->width=width;
+    }
+    double getWidth(){
+        return width;
+    }
+};
+class SquarePegAdapter :public RoundPeg{
+    private:
+    SquarePeg * peg;
+    public:
+        SquarePegAdapter(SquarePeg* peg) : RoundPeg(peg->getWidth() * sqrt(2) / 2){}
+};
 int main(){
     //Se quiere crear un hoyo de radio 3 unidades
     RoundHole* hole = new RoundHole(3);
@@ -59,8 +76,8 @@ int main(){
     } else {
         cout << "La clavija no encaja en el agujero." <<endl;
     }
-    PyramidPeg* small_sqpeg = new PyramidPeg(8,2);
-    PyramidPeg* large_sqpeg = new PyramidPeg(5,20);
+    PyramidPeg* small_sqpeg = new PyramidPeg(5,20);
+    PyramidPeg* large_sqpeg = new PyramidPeg(2,30);
     //Se crea un adaptador que convierte una clavija ya sea de cualquier forma a un hoyo circular
 
     //Se crea una clavija pequeña que no entra
